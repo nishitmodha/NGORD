@@ -28,10 +28,10 @@
 
     <form class="form-inline my-2 my-lg-0">
         <% if user_signed_in? %>
+            <%= link_to  "All Users", users_path, class: "btn btn-success nav-link" %> &nbsp;
             <%= link_to current_user.username,   edit_user_registration_path, class: "nav-link btn btn-outline-dark"  %>
             &nbsp;
-            <%= current_user.role %>
-            <%= link_to 'Sign Out',   destroy_user_session_path, method: :delete, class: "nav-link btn btn-outline-dark" %>
+            <%= link_to 'Sign Out',   destroy_user_session_path, method: :delete, class: "nav-link btn btn-outline-danger" %>
         <% else %>
             <%= link_to 'Sign Up',  new_user_registration_path, class: "nav-link btn btn-outline-dark"  %>
             <%= link_to 'Sign In',   new_user_session_path, class: "nav-link btn btn-outline-dark"  %>
