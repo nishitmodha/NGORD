@@ -66,6 +66,10 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.require(:project).permit(:name, :description, :address)
+      if current_user.system_admin? || current_user.gsas_trust_admin?
+        params.require(:project).permit(:name, :certificate_type, :owner, :developer, :service_provider, :service_provider_2, :description, :address, :location, :country, :construction_year, :coordinates, :buildings_footprint_area, :gross_area, :certified_area, :carpark_area, :project_site_area, :terms_and_conditions_accepted, :location_plan_file, :location_plan_file_cache, :site_plan_file, :site_plan_file_cache, :design_brief_file, :design_brief_file_cache, :project_narrative_file, :project_narrative_file_cache, :building_type_group_id, :building_type_id, :estimated_project_cost, :cost_square_meter, :estimated_building_cost, :estimated_infrastructure_cost, :code)
+      else
+        params.require(:project).permit(:name, :certificate_type, :owner, :developer, :service_provider_2, :description, :address, :location, :country, :construction_year, :coordinates, :buildings_footprint_area, :gross_area, :certified_area, :carpark_area, :project_site_area, :terms_and_conditions_accepted, :location_plan_file, :location_plan_file_cache, :site_plan_file, :site_plan_file_cache, :design_brief_file, :design_brief_file_cache, :project_narrative_file, :project_narrative_file_cache, :building_type_group_id, :building_type_id, :estimated_project_cost, :cost_square_meter, :estimated_building_cost, :estimated_infrastructure_cost)
+      end
     end
 end

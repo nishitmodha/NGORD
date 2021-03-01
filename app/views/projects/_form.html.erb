@@ -1,15 +1,66 @@
-
 <%= simple_form_for(@project) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :address %>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= f.input :code %>
+      <%= f.input :name %>
+      <%= f.select(:certificate_type, options_for_select(Certificate.certificate_types.map { |k, v| [t(k, scope: 'activerecord.attributes.certificate.certificate_types'), v]}, @project.certificate_type)) %>
+      <%= f.input :service_provider %>
+      <%= f.input :service_provider_2 %>
+      <%= f.input :owner %>
+      <%= f.input :developer %>
+      <%= f.input :estimated_project_cost %>
+      <%= f.input :cost_square_meter %>
+      <%= f.input :estimated_building_cost %>
+      <%= f.input :estimated_infrastructure_cost %>
+      <%= f.input :description %>
+      <%= f.input :construction_year %>
+    </div>
+
+    <div class="col">
+      <%= f.input :address %>
+      <%= f.input :location %>
+      <%= f.input :country, as: :text %>
+      <%= f.input :project_site_area %>
+      <%= f.input :gross_area %>
+      <%= f.input :buildings_footprint_area %>
+      <%= f.input :certified_area %>
+      <%= f.input :carpark_area %>
+
+      <label class="control-label" for="location_plan_file"> <%= Project.human_attribute_name('location_plan_file') %></label>
+      <%= f.file_field :location_plan_file %>
+      
+      <label class="control-label" for="site_plan_file"> <%= Project.human_attribute_name('site_plan_file') %></label>
+      <%= f.file_field :site_plan_file %>
+
+      <label class="control-label" for="design_brief_file"> <%= Project.human_attribute_name('design_brief_file') %></label>
+      <%= f.file_field :design_brief_file %>
+      
+      <label class="control-label" for="project_project_narrative_file"> <%= Project.human_attribute_name('project_narrative_file') %></label>
+      <%= f.file_field :project_narrative_file, hide_label: true %>
+      
+
+
+
+    </div>
+
+    <div class="col"></div>
+
+    <div class="col">
+    <%= f.text_field :coordinates %>
+    </div>
   </div>
 
+</div>
+
+
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn btn-success"%>
   </div>
 <% end %>
+
+

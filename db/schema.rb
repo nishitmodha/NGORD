@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_01_064342) do
+ActiveRecord::Schema.define(version: 2021_03_01_044522) do
+
+  create_table "certificates", force: :cascade do |t|
+    t.string "name"
+    t.integer "certificate_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
@@ -18,6 +25,29 @@ ActiveRecord::Schema.define(version: 2021_02_01_064342) do
     t.text "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "location"
+    t.string "country"
+    t.integer "gross_area"
+    t.integer "certified_area"
+    t.integer "carpark_area"
+    t.integer "project_site_area"
+    t.string "code"
+    t.integer "construction_year"
+    t.string "location_plan_file"
+    t.string "site_plan_file"
+    t.string "design_brief_file"
+    t.string "project_narrative_file"
+    t.string "owner", default: "", null: false
+    t.string "service_provider", default: "", null: false
+    t.string "developer"
+    t.integer "certificate_type"
+    t.string "service_provider_2"
+    t.string "estimated_project_cost"
+    t.string "cost_square_meter"
+    t.string "estimated_building_cost"
+    t.string "estimated_infrastructure_cost"
+    t.string "coordinates"
+    t.integer "buildings_footprint_area"
   end
 
   create_table "users", force: :cascade do |t|
